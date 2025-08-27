@@ -6,8 +6,10 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
     Transform cameraObject;
     Rigidbody playerRigidbody;
-    public float movementSpeed = 7f;
+    public float walkingSpeed = 2.5f;
+    public float runningSpeed = 7f;
     public float rotationSpeed = 14f;
+    public bool isRunning;
 
     private void Awake()
     {
@@ -22,7 +24,10 @@ public class PlayerMovement : MonoBehaviour
         moveDirection += cameraObject.right * inputManager.horizontalInput;
         moveDirection.y = 0;
         moveDirection.Normalize();
-        moveDirection *= movementSpeed;
+        if (isRunning)
+            moveDirection *= runningSpeed;
+        else
+            moveDirection *= walkingSpeed;
         Vector3 movementVelocity = moveDirection;
         playerRigidbody.linearVelocity = movementVelocity;
     }
