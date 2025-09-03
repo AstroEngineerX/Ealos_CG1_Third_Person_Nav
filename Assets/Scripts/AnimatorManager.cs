@@ -24,16 +24,9 @@ public class AnimatorManager : MonoBehaviour
         animator.SetFloat(horizontal, horizontalMovement, 0.1f, Time.deltaTime);
         animator.SetFloat(vertical, verticalMovement, 0.1f, Time.deltaTime);
     }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void PlayerTargetAnimation(string targetAnimation, bool isInteracting)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        animator.SetBool("isInteracting", isInteracting);
+        animator.CrossFade(targetAnimation, 0.2f);
     }
 }
